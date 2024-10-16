@@ -1,14 +1,3 @@
-variable "pdns_records" {
-  type = map(object({
-    #zone = string >> key
-    name    = string
-    type    = optional(string, "A")
-    ttl     = optional(number, 60)
-    records = list(string)
-  }))
-  default = {}
-}
-
 variable "pdns_zones" {
   type = map(object({
     #name = string
@@ -16,7 +5,18 @@ variable "pdns_zones" {
     account      = optional(string)
     nameservers  = optional(list(string))
     masters      = optional(list(string))
-    soa_edit_api = optional(string)
+    soa_edit_api = optional(string, "DEFAULT")
+  }))
+  default = {}
+}
+
+variable "pdns_records" {
+  type = map(object({
+    #zone = string >> key
+    #name    = string
+    type    = optional(string, "A")
+    ttl     = optional(number, 60)
+    records = list(string)
   }))
   default = {}
 }

@@ -1,7 +1,7 @@
 resource "powerdns_zone" "this" {
   for_each = var.pdns_zones != null ? var.pdns_zones : null
 
-  name         = each.key
+  name         = "${each.key}."
   kind         = each.value.kind
   account      = each.value.account
   nameservers  = each.value.nameservers
@@ -10,9 +10,9 @@ resource "powerdns_zone" "this" {
 }
 
 resource "powerdns_record" "this" {
-  for_each = var.pdns_records != null ? var.pdns_records : null
+  for_each = var.pdns_records != null ? local.flat_pdns_records : null
 
-  zone    = each.key
+  zone    = each.value.zone
   name    = each.value.name
   type    = each.value.type
   ttl     = each.value.ttl
