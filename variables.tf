@@ -11,13 +11,13 @@ variable "pdns_zones" {
 }
 
 variable "pdns_records" {
-  type = map(object({
+  type = map(map(object({
     #zone = string >> key
     #name    = string
     type    = optional(string, "A")
     ttl     = optional(number, 60)
     records = list(string)
-  }))
+  })))
   default = {}
 }
 
