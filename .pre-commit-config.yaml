@@ -50,7 +50,6 @@ repos:
       - id: terraform_trivy
       - id: terraform_checkov
       - id: terraform_docs
-      - id: tfupdate
 
   # Versioning: Commit Messages & Changelog
   #- repo: https://github.com/commitizen-tools/commitizen

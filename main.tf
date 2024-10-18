@@ -13,7 +13,7 @@ resource "powerdns_record" "this" {
   for_each = var.pdns_records != null ? local.flat_pdns_records : null
 
   zone    = each.value.zone
-  name    = each.value.name
+  name    = "${each.value.name}.${each.value.zone}."
   type    = each.value.type
   ttl     = each.value.ttl
   records = each.value.records

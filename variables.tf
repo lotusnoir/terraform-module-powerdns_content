@@ -1,6 +1,6 @@
 variable "pdns_zones" {
   type = map(object({
-    #name = string
+    #name = string >> key map 1
     kind         = string
     account      = optional(string)
     nameservers  = optional(list(string))
@@ -12,8 +12,8 @@ variable "pdns_zones" {
 
 variable "pdns_records" {
   type = map(map(object({
-    #zone = string >> key
-    #name    = string
+    #zone = string >> key map 1
+    #name    = string >> key map 2
     type    = optional(string, "A")
     ttl     = optional(number, 60)
     records = list(string)
